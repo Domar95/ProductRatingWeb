@@ -1,30 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Products</h1>
-
-    <div class="row row-cols-1 row-cols-md-4 g-4">
+<div class="container">
+  <h1 class="mt-4 mb-3">Products</h1>
+  <div class="row  col-md-12">
     {% for product in products %}
-
-    <div class="col">
-    <div class="card" style="width: 18rem;">
-        <img src="{{ url_for('static', filename = 'test-product.png') }}" class="card-img-top" alt="Product Image">
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.category }}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">taste: {{ product.score_taste }} / health: {{ product.score_health }}</li>
-          <li class="list-group-item">{{ product.price }}</li>
-          <li class="list-group-item">{{ product.shop }}</li>
-          <li class="list-group-item">{{ product.date }}</li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Go to the product</a>
-        </div>
+    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-3">
+      <div class="card mb-4">
+          <img src="{{ url_for('static', filename = 'test-product.png') }}" class="card-img-top" alt="Product Image">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.category }}</p>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">taste: {{ product.score_taste }} / health: {{ product.score_health }}</li>
+            <li class="list-group-item">{{ product.price }}</li>
+            <li class="list-group-item">{{ product.shop }}</li>
+            <li class="list-group-item">{{ product.date }}</li>
+          </ul>
+          <div class="card-body">
+            <a href="#" class="card-link">Go to the product</a>
+          </div>
       </div>
-    </div>
-    
+    </div>   
     {% endfor %}
-    </div>
-
+  </div>
+</div>
 {% endblock content %}
