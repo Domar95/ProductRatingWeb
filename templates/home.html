@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Products</h1>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+    {% for product in products %}
+
+    <div class="col">
+    <div class="card" style="width: 18rem;">
+        <img src="{{ url_for('static', filename = 'test-product.png') }}" class="card-img-top" alt="Product Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.category }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">taste: {{ product.score_taste }} / health: {{ product.score_health }}</li>
+          <li class="list-group-item">{{ product.price }}</li>
+          <li class="list-group-item">{{ product.shop }}</li>
+          <li class="list-group-item">{{ product.date }}</li>
+        </ul>
+        <div class="card-body">
+          <a href="#" class="card-link">Go to the product</a>
+        </div>
+      </div>
+    </div>
+    
+    {% endfor %}
+    </div>
+
+{% endblock content %}
