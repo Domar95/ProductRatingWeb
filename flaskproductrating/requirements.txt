@@ -4,3 +4,5 @@ email-validator
 flask-sqlalchemy
 gunicorn
 wtforms
+psycopg2
+flask-bcrypt

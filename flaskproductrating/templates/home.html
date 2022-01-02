@@ -6,7 +6,7 @@
     {% for product in products %}
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
       <div class="card mb-4">
-          <img src="{{ url_for('static', filename = 'test-product.png') }}" class="card-img-top" alt="Product Image">
+          <img src="{{ url_for('static', filename = 'product_pics/' + product.picture ) }}" class="card-img-top" alt="Product Image">
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">{{ product.category }}</p>
@@ -15,7 +15,11 @@
             <li class="list-group-item">taste: {{ product.score_taste }} / health: {{ product.score_health }}</li>
             <li class="list-group-item">{{ product.price }}</li>
             <li class="list-group-item">{{ product.shop }}</li>
-            <li class="list-group-item">{{ product.date }}</li>
+            <li class="list-group-item">{{ product.date.strftime('%Y-%m-%d') }}</li>
+            <li class="list-group-item">
+              <img class="rounded-circle article-img" style="width: 24px;" src="{{ url_for('static', filename='profile_pics/' + product.created_by.image_file) }}">
+              {{ product.created_by.username }}
+            </li>
           </ul>
           <div class="card-body">
             <a href="#" class="card-link">Go to the product</a>
