@@ -1,0 +1,18 @@
+body {
+    background: #FFFFFF;
+}
+
+.card-header{
+    background-color: #EBEBEB;
+    color: #0A0A0A;
+}
+
+.card-body{
+    background-color: #F5F5F5;
+    color: #0A0A0A;
+}
+
+.list-group-item{
+    background-color: #F5F5F5;
+    color: #0A0A0A;
+}

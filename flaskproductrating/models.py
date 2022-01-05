@@ -1,4 +1,5 @@
 from datetime import datetime
+import timeago
 from flaskproductrating import db, login_manager
 from flask_login import UserMixin
 
@@ -22,14 +23,17 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True, nullable=False)
     category = db.Column(db.String(50), unique=False, nullable=False) #+ osobna klasa
-    date =  db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     score_taste = db.Column(db.Integer, nullable=False)
     score_health = db.Column(db.Integer, nullable=False)
-    picture = db.Column(db.String(20), nullable=False, default='test-product.png')
+    picture = db.Column(db.String(20), nullable=True, default='test-product.png')
     price = db.Column(db.Float, nullable=True)
-    shop = db.Column(db.String(50), unique=False, nullable=False) #+ osobna klasa
+    shop = db.Column(db.String(50), unique=False, nullable=True) #+ osobna klasa
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     #+description
+
+    def time_ago(self):
+        return timeago.format(self.date, datetime.now())
 
     def __repr__(self):
         return str(self.__dict__)

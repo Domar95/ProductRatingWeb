@@ -1,17 +1,21 @@
 import secrets
 import os
 from PIL import Image
-from flask import render_template, flash, redirect, request
+from flask import render_template, flash, redirect, request, abort
 from flask_login.utils import login_user
 from flaskproductrating import app, db, bcrypt
 from flaskproductrating.forms import RegistrationForm, LoginForm, UpdateAccountForm, ProductForm
 from flaskproductrating.models import User, Product
 from flask.helpers import url_for
 from flask_login import login_user, current_user, logout_user, login_required
+from datetime import datetime
 
 # sample data
 from flaskproductrating.products import default_products
 my_products = default_products
+
+
+
 
 @app.route("/home")
 @app.route("/")
@@ -22,14 +26,6 @@ def home():
 @app.route("/about")
 def about():
     return render_template('about.html', title = 'About')
-    
-@app.route("/change-product")
-def change_product():
-    return "<h1>Change Product</h1>"
-
-@app.route("/delete-product")
-def delete_product():
-    return "<h1>Delete Product</h1>"
 
 @app.route("/save-file")
 def save_file():
@@ -93,6 +89,12 @@ def save_picture(form_picture, folder):
     return picture_fn
 
 
+def read_picture(form_picture):
+    pass
+
+
+
+
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
@@ -120,20 +122,60 @@ def new_product():
     if form.validate_on_submit():
         product = Product(name=form.name.data, category=form.category.data, score_taste=form.score_taste.data, score_health=form.score_health.data,
                         price=form.price.data, shop=form.shop.data, user_id=current_user.id)
-        print(form.picture.data)
-        print(product.picture)
         if form.picture.data:
             picture_file = save_picture(form.picture.data, 'product_pics')
-            print(picture_file)
             product.picture = picture_file
         db.session.add(product)
         db.session.commit()
         flash('Your product has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_product.html', title='New Product', form=form)
+    return render_template('create_product.html', title='New Product', form=form, legend='New Product')
 
 
 @app.route('/product/<int:product_id>')
 def product(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('product.html', title=product.name, product=product)
+
+@app.route('/product/<int:product_id>/update', methods=['GET', 'POST'])
+@login_required
+def update_product(product_id):
+    product = Product.query.get_or_404(product_id)
+    if product.created_by != current_user:
+        abort(403)
+    form = ProductForm()
+    if form.validate_on_submit():
+        product.name = form.name.data
+        product.category = form.category.data
+        product.score_taste = form.score_taste.data
+        product.score_health = form.score_health.data
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data, 'product_pics')
+            product.picture = picture_file
+        product.price = form.price.data
+        product.shop = form.shop.data
+        print(datetime.utcnow)
+        db.session.commit()
+        flash('Your product has been updated!', 'success')
+        return redirect(url_for("product", product_id=product.id))
+    elif request.method == 'GET':   
+        form.name.data = product.name
+        form.category.data = product.category
+        form.score_taste.data = product.score_taste
+        form.score_health.data = product.score_health
+        form.picture.data = product.picture
+        form.price.data = product.price
+        form.shop.data = product.shop
+    return render_template('create_product.html', title='Update Product', form=form, legend='Update Product')
+
+
+@app.route('/product/<int:product_id>/delete', methods=['POST'])
+@login_required
+def delete_product(product_id):
+    product = Product.query.get_or_404(product_id)
+    if product.created_by != current_user:
+        abort(403)
+    db.session.delete(product)
+    db.session.commit()
+    flash('Your product has been deleted!', 'success')
+    return redirect(url_for('home'))

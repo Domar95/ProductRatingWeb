@@ -13,9 +13,9 @@
 
   <!-- Title -->
   {% if title %}
-      <title>Products Rating - {{ title }}</title>
+      <title>Product Rating - {{ title }}</title>
   {% else %}
-      <title>Products Rating</title>
+      <title>Product Rating</title>
   {% endif %}
 </head> 
 <body>  
@@ -48,6 +48,9 @@
               <a class="nav-link" href="{{ url_for('login') }}">Login</a>
             </li>
             {% endif %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('about') }}">About</a>
+            </li>
           </ul>
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

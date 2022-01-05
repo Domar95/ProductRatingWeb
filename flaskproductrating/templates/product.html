@@ -6,6 +6,12 @@
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
       <div class="card mb-4">
           <img src="{{ url_for('static', filename = 'product_pics/' + product.picture ) }}" class="card-img-top" alt="Product Image">
+          {% if product.created_by == current_user %}
+          <div>
+            <a class="btn btn-secondary btn-sm m-1 mb-1" href="{{ url_for('update_product', product_id=product.id) }}" class="card-link">Update</a>
+          <button type="button" class="btn btn-danger btn-sm m-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+          </div>
+          {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">{{ product.category }}</p>
@@ -21,10 +27,32 @@
             </li>
           </ul>
           <div class="card-body">
-            <a href="#" class="card-link">Go to the product</a>
+            <a href="{{ url_for('home') }}" class="card-link">Go back to homepage</a>
           </div>
       </div>
     </div>   
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete Product?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure that you want to delete product named: <b>{{ product.name }}</b>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="{{ url_for('delete_product', product_id=product.id) }}" method="POST">
+          <input class="btn btn-danger" type="submit" value="Delete">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}
