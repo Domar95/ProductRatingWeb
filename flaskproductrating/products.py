@@ -7,7 +7,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
         {
@@ -18,7 +18,7 @@ default_products = [
             'score_health': 50,
             'picture': 'zdjecie5.jpg',
             'price': '5,00',
-            'shop': 'Lidl',
+            'store': 'Lidl',
             'index': 0
         },
                 {
@@ -29,7 +29,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
                 {
@@ -40,7 +40,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
                 {
@@ -51,7 +51,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
                 {
@@ -62,7 +62,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
                 {
@@ -73,7 +73,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
                 {
@@ -84,7 +84,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
                 {
@@ -95,7 +95,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
                 {
@@ -106,7 +106,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         },
                 {
@@ -117,7 +117,7 @@ default_products = [
             'score_health': 60,
             'picture': 'zdjecie4.jpg',
             'price': '4,00',
-            'shop': 'Biedronka',
+            'store': 'Biedronka',
             'index': 0
         }
     ]

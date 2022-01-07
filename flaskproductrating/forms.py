@@ -6,7 +6,6 @@ from wtforms.fields.simple import StringField
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flaskproductrating.models import User
-import datetime
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
@@ -61,6 +60,5 @@ class ProductForm(FlaskForm):
     score_health = IntegerField('Health score', validators=[DataRequired()])
     picture = FileField('Picture', validators=[FileAllowed(['jpg', 'png'])])
     price = FloatField('Price') #dodatkowa klasa jest dla cen (Field)
-    shop = StringField('Shop')
+    store = StringField('Store')
     submit = SubmitField('Add')
-    date = datetime.now()

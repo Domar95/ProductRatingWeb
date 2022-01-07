@@ -9,19 +9,21 @@ from flaskproductrating.models import User, Product
 from flask.helpers import url_for
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
+import timeago
 
 # sample data
 from flaskproductrating.products import default_products
 my_products = default_products
 
-
+def time_ago(last_modified):
+    return timeago.format(last_modified, datetime.utcnow())
 
 
 @app.route("/home")
 @app.route("/")
 def home():
     products = Product.query.all()
-    return render_template('home.html', products = products)
+    return render_template('home.html', products = products, time_ago=time_ago)
 
 @app.route("/about")
 def about():
@@ -75,13 +77,13 @@ def logout():
     return redirect(url_for('home'))
 
 
-def save_picture(form_picture, folder):
+def save_picture(form_picture, folder, width, length):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static', folder, picture_fn)
 
-    output_size = (125, 125)
+    output_size = (width, length)
     img = Image.open(form_picture)
     img.thumbnail(output_size)
     img.save(picture_path)
@@ -101,7 +103,7 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
-            picture_file = save_picture(form.picture.data, 'profile_pics')
+            picture_file = save_picture(form.picture.data, 'profile_pics', 128, 128)
             current_user.image_file = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
@@ -121,9 +123,9 @@ def new_product():
     form = ProductForm()
     if form.validate_on_submit():
         product = Product(name=form.name.data, category=form.category.data, score_taste=form.score_taste.data, score_health=form.score_health.data,
-                        price=form.price.data, shop=form.shop.data, user_id=current_user.id)
+                        price=form.price.data, store=form.store.data, description= 'No description added.' if not form.description.data else form.description.data, user_id=current_user.id)
         if form.picture.data:
-            picture_file = save_picture(form.picture.data, 'product_pics')
+            picture_file = save_picture(form.picture.data, 'product_pics', 241, 321)
             product.picture = picture_file
         db.session.add(product)
         db.session.commit()
@@ -135,7 +137,7 @@ def new_product():
 @app.route('/product/<int:product_id>')
 def product(product_id):
     product = Product.query.get_or_404(product_id)
-    return render_template('product.html', title=product.name, product=product)
+    return render_template('product.html', title=product.name, product=product, time_ago=time_ago)
 
 @app.route('/product/<int:product_id>/update', methods=['GET', 'POST'])
 @login_required
@@ -150,11 +152,12 @@ def update_product(product_id):
         product.score_taste = form.score_taste.data
         product.score_health = form.score_health.data
         if form.picture.data:
-            picture_file = save_picture(form.picture.data, 'product_pics')
+            picture_file = save_picture(form.picture.data, 'product_pics', 241, 321)
             product.picture = picture_file
         product.price = form.price.data
-        product.shop = form.shop.data
-        print(datetime.utcnow)
+        product.store = form.store.data
+        product.description = form.description.data
+        product.date_modified = datetime.utcnow()
         db.session.commit()
         flash('Your product has been updated!', 'success')
         return redirect(url_for("product", product_id=product.id))
@@ -165,7 +168,8 @@ def update_product(product_id):
         form.score_health.data = product.score_health
         form.picture.data = product.picture
         form.price.data = product.price
-        form.shop.data = product.shop
+        form.store.data = product.store
+        form.description.data = product.description
     return render_template('create_product.html', title='Update Product', form=form, legend='Update Product')
 
 

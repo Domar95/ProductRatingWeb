@@ -99,17 +99,17 @@
                 {% endif %}
             </div>
             <div class='form-group mb-3'>
-                {{ form.shop.label(class='form-control-label') }}
+                {{ form.store.label(class='form-control-label') }}
 
-                {% if form.shop.errors %}
-                    {{ form.shop(class='form-control form-control-lg is-invalid') }}
+                {% if form.store.errors %}
+                    {{ form.store(class='form-control form-control-lg is-invalid') }}
                     <div class='invalid-feedback'>
-                        {% for error in form.shop.errors %}
+                        {% for error in form.store.errors %}
                             <span>{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
-                    {{ form.shop(class='form-control form-control-lg') }}
+                    {{ form.store(class='form-control form-control-lg') }}
                 {% endif %}
             </div>
         </fieldset>

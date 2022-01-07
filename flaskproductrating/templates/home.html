@@ -8,29 +8,24 @@
     {% for product in products %}
     <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
       <div class="card text-white mb-4">
-            <div class="card-header">{{ product.category }}</div>
+            <div class="card-header pt-1 pb-1">{{ product.category }}</div>
 
-            <div class="card-body">
+            <div class="card-body pt-2 pb-2">
               <h5 class="card-title">{{ product.name }}</h5>
             </div>
 
             <img src="{{ url_for('static', filename = 'product_pics/' + product.picture) }}" class="card-img-top" alt="Product Image">
             
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">taste: {{ product.score_taste }} / health: {{ product.score_health }}</li>
-              <li class="list-group-item">price: {{ product.price }}</li>
-              <li class="list-group-item">bought in: {{ product.shop }}</li>
-              <li class="list-group-item">{{ product.date.strftime('%Y-%m-%d') }}</li>
-              <li class="list-group-item">added by {{ product.created_by.username }}
-                <img class="rounded-circle article-img" style="width: 24px;" src="{{ url_for('static', filename='profile_pics/' + product.created_by.image_file) }}">
-              </li>
+              <li class="list-group-item">T: {{ product.score_taste }}% / H: {{ product.score_health }}%</li>
+              <li class="list-group-item">{{ product.description }}</li>
             </ul>
 
             <div class="card-footer">
-              <small class="text-muted">Last updated {{ product.time_ago() }}</small>
+              <small class="text-muted">Updated {{ time_ago(product.date_modified) }}</small>
             </div>
             
-            <a href="{{ url_for('product', product_id=product.id) }}" class="btn btn-dark stretched-link">Go to the Product</a>
+            <a href="{{ url_for('product', product_id=product.id) }}" class="btn btn-dark">Go to the Product</a>
       </div>
     </div>   
     {% endfor %}
