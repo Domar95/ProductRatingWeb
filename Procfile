@@ -1,1 +1,1 @@
-web: gunicorn flask_pr:app
+web: gunicorn flaskproductrating:app
