@@ -9,4 +9,3 @@ flask-bcrypt
 flask-login
 datetime
 timeago
-PIL
