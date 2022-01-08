@@ -10,6 +10,12 @@ So here comes the ProductRatingWeb. This application was designed to store all t
 ## Features
 
 
+### View products
+
+All products can be viewed on the homepage. If you are looking for specific product, please use "Search" function.
+If you want to view all information concerning a product, click on the "Go to the Product" button.
+
+![view-products](https://user-images.githubusercontent.com/87876261/148648803-3e2fc60e-9c93-44e1-aaa4-8fbaeb7b51d8.jpg)
 
 ### Add products
 
@@ -18,17 +24,9 @@ It is recommended to add a picture for easy recognizion of a product.
 
 ![add-product](https://user-images.githubusercontent.com/87876261/148648787-c1c9bdd7-8976-4471-95a6-eb3cde0aa8da.jpg)
 
-
-### View products
-
-All products can be viewed on the homepage. If you are looking for specific product, please use "Search" function.
-If you want to view all information concerning a product, click on the "Go to the Product" button.
-
-![view-products](https://user-images.githubusercontent.com/87876261/148648803-3e2fc60e-9c93-44e1-aaa4-8fbaeb7b51d8.jpg)
-
 ### Update & Delete products
 
-Once you clicked on a "Go to the Product" button, you will be able to update its information or delete the product.
+Once you clicked on a "Go to the Product" button on the homepage, you will be able to update product information or delete the product.
 
 NOTE: This option is available only to the owner of the item while logged in.
 
