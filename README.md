@@ -50,7 +50,3 @@ Users can create their own accounts using username, e-mail and password.
 * advanced search options to be available
 * email confirmation on register
 * more profile information
-
-
-
-## README in construction
