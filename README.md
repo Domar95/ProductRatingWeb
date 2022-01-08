@@ -16,14 +16,14 @@ So here comes the ProductRatingWeb. This application was designed to store all t
 Once you are registered, you can add a product by clicking "New Product". You will be asked to fill a form.
 It is recommended to add a picture for easy recognizion of a product.
 
-
+!(/readme-images/add-product.jpg)
 
 ### View products
 
 All products can be viewed on the homepage. If you are looking for specific product, please use "Search" function.
 If you want to view all information concerning a product, click on the "Go to the Product" button.
 
-
+!(/readme-images/view-products.jpg)
 
 ### Update & Delete products
 
@@ -31,13 +31,13 @@ Once you clicked on a "Go to the Product" button, you will be able to update its
 
 NOTE: This option is available only to the owner of the item while logged in.
 
-
+!(/readme-images/view-update-delete-product.jpg)
 
 ### User accounts
 
 Users can create their own accounts using username, e-mail and password.
 
-
+!(/readme-images/create-account.jpg)
 
 ### Features to be added
 
