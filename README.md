@@ -12,7 +12,6 @@ So here comes the ProductRatingWeb. This application was designed to store all t
 ### View products
 
 All products can be viewed on the homepage. If you are looking for specific product, please use "Search" function.
-
 If you want to view all information concerning a product, click on the "Go to the Product" button.
 
 
@@ -28,7 +27,6 @@ NOTE: This option is available only to the owner of the item while logged in.
 ### Add products
 
 Once you are registered, you can add a product by clicking "New Product". You will be asked to fill a form.
-
 It is recommended to add a picture for easy recognizion of a product.
 
 
