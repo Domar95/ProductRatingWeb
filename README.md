@@ -16,7 +16,7 @@ So here comes the ProductRatingWeb. This application was designed to store all t
 Once you are registered, you can add a product by clicking "New Product". You will be asked to fill a form.
 It is recommended to add a picture for easy recognizion of a product.
 
-!(/readme-images/add-product.jpg)
+![Add Products Image](ProductRatingWeb/readme-images/add-product.jpg)
 
 ### View products
 
