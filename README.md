@@ -1,9 +1,10 @@
 # ProductRatingWeb
 ProductRatingWeb is an open-source online application that can be used to store data about food products in structured form.
 
-Nowadays, there are many products available on the market. Consumers tend to try out new products but not all of them are good enough to stay with them for longer. On the other hand, people may have some loved products but each of them may do better on different occassion. What if a product tastes really well but contains a hell of preservatives and should not be eaten on a daily basis? Oh, there is also a price that may play a role while deciding to buy a product. Unfortunately, it is nearly impossible to remember all these information in a single mind. Well, unless you are an alien...
+Nowadays, there are many products available on the market. Consumers tend to try out new products but not all of them are good enough to stay with them for longer. On the other hand, people may have some loved products but each of them might do better on different occassion. What if a product tastes really well but contains a hell of preservatives and should not be eaten on a daily basis? Oh, there is also a price that may play a role while deciding to buy a product. Unfortunately, it is nearly impossible to remember all these information in a single mind. Well, unless you are an alien...
 
-Here comes the ProductRatingWeb. This application was designed to store all these information for you and make them available anytime.
+So here comes the ProductRatingWeb. This application was designed to store all these information for you and make them available anytime.
+
 
 
 ## Features
@@ -29,14 +30,14 @@ Users can create their own accounts using username, e-mail and password.
 
 
 ### Features to be added
-*decide whether you want to share your product with other users by setting it as private or public
-*decide which user's products you want to see
-*configure product information that you want to see on the homepage
-*set main product categories to choose from while adding new product or updating existing one
-*search function to sort by best matches
-*advanced search options to be available
-*email confirmation on register
-*more profile information
+-decide whether you want to share your product with other users by setting it as private or public
+-decide which user's products you want to see
+-configure product information that you want to see on the homepage
+-set main product categories to choose from while adding new product or updating existing one
+-search function to sort by best matches
+-advanced search options to be available
+-email confirmation on register
+-more profile information
 
 
 ## README in construction
