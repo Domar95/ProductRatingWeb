@@ -11,38 +11,62 @@ from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 import timeago
 
+
 # sample data
 from flaskproductrating.products import default_products
 my_products = default_products
+
 
 def time_ago(last_modified):
     return timeago.format(last_modified, datetime.utcnow())
 
 
+def search_request():
+    _query = request.args.get('_query')
+    return _query
+
+
 @app.route("/home")
 @app.route("/")
 def home():
-    products = Product.query.all()
-    return render_template('home.html', products = products, time_ago=time_ago)
+    msg = None
+    _query = search_request()
+    if _query:
+        products = Product.query.filter(Product.name.contains(_query) | Product.category.contains(_query))
+        try:
+            products[0]
+        except:
+            msg = 'No products found.'
+    else:
+        products = Product.query.all()
+
+    return render_template('home.html', products=products, time_ago=time_ago, msg=msg)
+
 
 @app.route("/about")
 def about():
+    if search_request():
+        return home()
     return render_template('about.html', title = 'About')
+
 
 @app.route("/save-file")
 def save_file():
-    return "<h1>Save file</h1>"
+    return "<h1>Save file - in construction</h1>"
 
 @app.route("/load-file")
 def load_file():
-    return "<h1>Load file</h1>"
+    return "<h1>Load file - in construction</h1>"
 
 @app.route("/clear-products")
 def clear_products():
-    return "<h1>Clear Products</h1>"
+    return "<h1>Clear Products - in construction</h1>"
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
+    if search_request():
+        return home()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -55,8 +79,11 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title="Register", form=form)
 
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    if search_request():
+        return home()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
@@ -95,11 +122,11 @@ def read_picture(form_picture):
     pass
 
 
-
-
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
+    if search_request():
+        return home()
     form = UpdateAccountForm()
     if form.validate_on_submit():
         if form.picture.data:
@@ -114,12 +141,15 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+
     return render_template('account.html', title="Account", image_file=image_file, form=form)
 
 
 @app.route('/product/new', methods=['GET', 'POST'])
 @login_required
 def new_product():
+    if search_request():
+        return home()
     form = ProductForm()
     if form.validate_on_submit():
         product = Product(name=form.name.data, category=form.category.data, score_taste=form.score_taste.data, score_health=form.score_health.data,
@@ -136,12 +166,17 @@ def new_product():
 
 @app.route('/product/<int:product_id>')
 def product(product_id):
+    if search_request():
+        return home()
     product = Product.query.get_or_404(product_id)
     return render_template('product.html', title=product.name, product=product, time_ago=time_ago)
+
 
 @app.route('/product/<int:product_id>/update', methods=['GET', 'POST'])
 @login_required
 def update_product(product_id):
+    if search_request():
+        return home()
     product = Product.query.get_or_404(product_id)
     if product.created_by != current_user:
         abort(403)

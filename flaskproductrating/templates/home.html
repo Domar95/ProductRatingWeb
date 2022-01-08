@@ -27,8 +27,13 @@
             
             <a href="{{ url_for('product', product_id=product.id) }}" class="btn btn-dark">Go to the Product</a>
       </div>
-    </div>   
+    </div>
     {% endfor %}
+
+    {% if msg %}
+    {{ msg }}
+    {% endif %}
+
   </div>
 </div>
 {% endblock content %}
