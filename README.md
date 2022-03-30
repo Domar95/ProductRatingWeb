@@ -5,6 +5,8 @@ Nowadays, there are many products available on the market. Consumers tend to try
 
 So here comes the ProductRatingWeb. This application was designed to store all these information for you and make them available anytime.
 
+Link to deployed app at Heroku: https://productratingweb.herokuapp.com/
+
 
 
 ## Features
